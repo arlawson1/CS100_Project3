@@ -1,0 +1,292 @@
+#include <stdio.h>
+#include <string.h>
+
+/* This program was written by Andrew Lawson
+   The purpose of this program is to count the number of times a user hits
+   a key on their keyboard and returns that value, along with the total number
+   of strings, characters, and strings that only took 1 hand to type */
+
+char LeftPinky(char userStr[]);
+char LeftRing(char userStr[]);
+char LeftMiddle(char userStr[]);
+char LeftIndex(char userStr[]);
+char RightPinky(char userStr[]);
+char RightRing(char userStr[]);
+char RightMiddle(char userStr[]);
+char RightIndex(char userStr[]);
+
+int main(void){
+
+  int pinkyL = 0, pinkyR = 0;
+  int ringL = 0, ringR = 0;
+  int middleL = 0, middleR = 0;
+  int indexL = 0, indexR = 0;
+  int totalCharacters = 0;
+  char userStr[50];
+  int totalStrings = 0;
+  int capitalL = 0, capitalR = 0;
+  int totalKeyStrokes = 0;
+  int leftKeyboard = 0;
+  int rightKeyboard = 0;
+  int leftChar = 0;
+  int rightChar = 0;
+
+  printf("Type a block of text.\n");
+
+  scanf("%s", userStr);
+  while (! feof(stdin)){
+    int len = strlen(userStr);
+    for(int a = 0; a < len; a++){
+  }
+    for(int a = 0; a < len; a++){
+      if(userStr[a] == 126 /* ~ */ || userStr[a] == 33 /* ! */
+        || userStr[a] == 81 /* Q */ || userStr[a] == 65 /* A */
+        || userStr[a] == 90 /* Z */){
+          pinkyL++;
+          capitalL++;
+        }
+      if(userStr[a] == 64 /* @ */ || userStr[a] == 87 /* W */
+      || userStr[a] == 83 /* S */ || userStr[a] == 88 /* X */){
+          ringL++;
+          capitalL++;
+      }
+      if(userStr[a] == 35 /* # */ || userStr[a] == 69 /* E */
+      || userStr[a] == 68 /* D */ || userStr[a] == 67 /* C */){
+        middleL++;
+        capitalL++;
+      }
+      if(userStr[a] == 36 /* $ */ || userStr[a] == 82 /* R */
+      || userStr[a] == 70 /* F */ || userStr[a] == 86 /* V */
+      || userStr[a] == 37 /* % */ || userStr[a] == 84 /* T */
+      || userStr[a] == 71 /* G */ || userStr[a] == 66 /* B */){
+        indexL++;
+        capitalL++;
+      }
+      if(userStr[a] == 43 /* + */ || userStr[a] == 95 /* _ */
+      || userStr[a] == 41 /* ) */ || userStr[a] == 124 /* | */
+      || userStr[a] == 125 /* } */ || userStr[a] == 123 /* { */
+      || userStr[a] == 80 /* P */ || userStr[a] == 34 /* " */
+      || userStr[a] == 58 /* : */ || userStr[a] ==63 /* ? */){
+        pinkyR++;
+        capitalR++;
+      }
+      if(userStr[a] == 40 /* ( */ || userStr[a] == 79 /* O */
+      || userStr[a] == 76 /* L */ || userStr[a] == 62 /* > */){
+        ringR++;
+        capitalR++;
+      }
+      if(userStr[a] == 42 /* * */ || userStr[a] == 73 /* I */
+      || userStr[a] == 75 /* K */ || userStr[a] == 60 /* < */){
+        middleR++;
+        capitalR++;
+      }
+      if(userStr[a] == 38 /* & */ || userStr[a] == 85 /* U */
+      || userStr[a] == 74 /* J */ || userStr[a] == 77 /* M */
+      || userStr[a] == 94 /* ^ */ || userStr[a] == 89 /* Y */
+      || userStr[a] == 72 /* H */ || userStr[a] == 78 /* N */){
+        indexR++;
+        capitalR++;
+      }
+    }
+
+    for(int a = 0; a < len; a++){
+      // left side
+      // ~!@#$%QWERTASDFGZXCVB
+      if(userStr[a] == 96 /* ` */ || userStr[a] == 49 /* 1 */
+      || userStr[a] == 50 /* 2 */ || userStr[a] == 51 /* 3 */
+      || userStr[a] == 52 /* 4 */ || userStr[a] == 53 /* 5 */
+      || userStr[a] == 113 /* q */ || userStr[a] == 119 /* w */
+      || userStr[a] == 101 /* e */ || userStr[a] == 114 /* r */
+      || userStr[a] == 116 /* t */
+      || userStr[a] == 97 /* a */ || userStr[a] == 115 /* s */
+      || userStr[a] == 100 /* d */ || userStr[a] == 102 /* f */
+      || userStr[a] == 103 /* g */
+      || userStr[a] == 122 /* z */ || userStr[a] == 120 /* x */
+      || userStr[a] == 99 /* c */ || userStr[a] == 118 /* v */
+      || userStr[a] == 98 /* b */){
+        leftChar++;
+        if(leftChar == len){
+          leftKeyboard++;
+        }
+      }
+  }
+  leftChar = 0;
+
+
+  for(int a = 0; a < len; a++){
+    // right side
+    if(userStr[a] == 54 /* 6 */ || userStr[a] == 55 /* 7 */
+    || userStr[a] == 56 /* 8 */ || userStr[a] == 57 /* 9 */
+    || userStr[a] == 48 /* 0 */ || userStr[a] == 45 /* - */
+    || userStr[a] == 61 /* = */
+    || userStr[a] == 121 /* y */ || userStr[a] == 117 /* u */
+    || userStr[a] == 105 /* i */ || userStr[a] == 111 /* o */
+    || userStr[a] == 112 /* p */ || userStr[a] == 91 /* [ */
+    || userStr[a] == 93 /* ] */ || userStr[a] == 92 /* \ */
+    || userStr[a] == 124 /* | */
+    || userStr[a] == 104 /* h */ || userStr[a] == 106 /* j */
+    || userStr[a] == 107 /* k */ || userStr[a] == 108 /* l */
+    || userStr[a] == 59 /* ; */ || userStr[a] == 39 /* ' */
+    || userStr[a] == 110 /* n */ || userStr[a] == 109 /* m */
+    || userStr[a] == 44 /* , */ || userStr[a] == 46 /* . */
+    || userStr[a] == 47 /* / */){
+      rightChar++;
+      if(rightChar == len){
+        rightKeyboard++;
+      }
+    }
+}
+rightChar = 0;
+
+
+    pinkyL += LeftPinky(userStr);
+    ringL += LeftRing(userStr);
+    middleL += LeftMiddle(userStr);
+    indexL += LeftIndex(userStr);
+    pinkyR += RightPinky(userStr);
+    ringR += RightRing(userStr);
+    middleR += RightMiddle(userStr);
+    indexR += RightIndex(userStr);
+    totalStrings++;
+    scanf("%s", userStr);
+}
+
+    pinkyL = pinkyL + capitalR;
+    pinkyR = pinkyR + capitalL;
+
+    totalCharacters = pinkyL + pinkyR + ringL + ringR+ middleL+ middleR+ indexL + indexR - capitalL - capitalR;
+    totalKeyStrokes = totalCharacters + capitalL + capitalR;
+
+    printf("\n\n");
+
+
+  printf("%d Total strings\n", totalStrings);
+  printf("%d Total characters\n", totalCharacters);
+  printf("%d typed only using the left hand\n", leftKeyboard);
+  printf("%d typed only using the right hand\n", rightKeyboard);
+  printf("%d Total keystrokes\n", totalKeyStrokes);
+
+  printf("  %d: Left index\n", indexL);
+  printf("  %d: Left middle\n", middleL);
+  printf("  %d: Left ring\n", ringL);
+  printf("  %d: Left pinky\n", pinkyL);
+  printf("  %d: Right index\n", indexR);
+  printf("  %d: Right middle\n", middleR);
+  printf("  %d: Right ring\n", ringR);
+  printf("  %d: Right pinky\n", pinkyR);
+
+  return 0;
+}
+
+char LeftPinky(char userStr[]){
+int a;
+int pinkyL = 0;
+  int len = strlen(userStr);
+  for(a = 0; a < len; a++){
+    if(userStr[a] == 122 /* z */ || userStr[a] == 97 /* a */      // lower case
+      || userStr[a] == 113 /* q */ || userStr[a] == 49 /* 1 */
+      || userStr[a] == 96 /* ` */){
+        pinkyL++;
+      }
+    }
+    return pinkyL;
+  }
+
+  char LeftRing(char userStr[]){
+    int a, ringL = 0;
+    int len = strlen(userStr);
+    for(a = 0; a < len; a++){
+      if(userStr[a] == 50 /* 2 */ || userStr[a] == 119 /* w */
+      || userStr[a] == 115 /* s */ || userStr[a] == 120 /* x */){
+          ringL++;
+      }
+    }
+    return ringL;
+  }
+
+char LeftMiddle(char userStr[]){
+  int a, middleL = 0;
+  int len = strlen(userStr);
+  for(a = 0; a < len; a++){
+    if (userStr[a] == 51 /* 3 */ || userStr[a] == 101 /* e */
+    || userStr[a] == 100 /* d */ || userStr[a] == 99 /* c */){
+      middleL++;
+    }
+  }
+  return middleL;
+}
+
+char LeftIndex(char userStr[]){
+  int a, indexL = 0;
+  int len = strlen(userStr);
+  for(a = 0; a < len; a++){
+    if(userStr[a] == 52 /* 4 */ || userStr[a] == 114 /* r */
+    || userStr[a] == 102 /* f */ || userStr[a] == 118 /* v */
+    || userStr[a] == 53 /* 5 */ || userStr[a] == 116 /* t */
+    || userStr[a] == 103 /* g */ || userStr[a] == 98 /* b */){
+      indexL++;
+    }
+  }
+  return indexL;
+}
+
+char RightPinky(char userStr[]){
+  int a, pinkyR = 0;
+  int len = strlen(userStr);
+  for(a = 0; a < len; a++){
+    if(userStr[a] == 48 /* 0 */ || userStr[a] == 112 /* p */
+    || userStr[a] == 59 /* ; */ || userStr[a] == 47 /* / */
+    || userStr[a] == 45 /* - */ || userStr[a] == 91 /* [ */
+    || userStr[a] == 39 /* ' */ || userStr[a] == 61 /* = */
+    || userStr[a] == 93 /* ] */ || userStr[a] == 92 /* \ */){
+      pinkyR++;
+    }
+  }
+  return pinkyR;
+}
+
+char RightRing(char userStr[]){
+  int a, ringR = 0;
+  int len = strlen(userStr);
+  for(a = 0; a < len; a++){
+    if(userStr[a] == 57 /* 9 */ || userStr[a] == 111 /* o */
+    || userStr[a] == 108 /* l */ || userStr[a] == 46 /* . */){
+      ringR++;
+    }
+  }
+  return ringR;
+}
+
+char RightMiddle(char userStr[]){
+  int a, middleR = 0;
+  int len = strlen(userStr);
+  for(a = 0; a < len; a++){
+    if(userStr[a] == 56 /* 8 */ || userStr[a] == 105 /* i */
+    || userStr[a] == 107 /* k */ || userStr[a] == 44 /* , */){
+      middleR++;
+    }
+  }
+  return middleR;
+}
+
+char RightIndex(char userStr[]){
+  int a, indexR = 0;
+  int len = strlen(userStr);
+  for(a = 0; a < len; a++){
+    if(userStr[a] == 55 /* 7 */ || userStr[a] == 117 /* u */
+    || userStr[a] == 106 /* j */ || userStr[a] == 109 /* m */
+    || userStr[a] == 54 /* 6 */ || userStr[a] == 121 /* y */
+    || userStr[a] == 104 /* h */ || userStr[a] == 110 /* n */){
+      indexR++;
+    }
+  }
+  return indexR;
+}
+
+char GetCapitalLeft(char userStr[]){
+  int a, capitalLeft = 0;
+  int len = strlen(userStr);
+  for(a = 0; a < len; a++){
+
+  }
+}
